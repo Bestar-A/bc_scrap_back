@@ -1,4 +1,6 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs");
+const path = require("path");
 
 var firstGameHash = null;
 
@@ -6,17 +8,13 @@ const scrapeCrashGameData = () => {
 	return firstGameHash;
 };
 
+// Specify the directory you want to list files from
+const folderPath = path.dirname(puppeteer.executablePath()); // Replace with your folder name
+
+console.log(fs.existsSync(folderPath));
+
 const scrapeBackground = async () => {
-	const getChromePath = async () => {
-		const browserFetcher = puppeteer.createBrowserFetcher();
-		const revisionInfo = await browserFetcher.fetch(puppeteer.PUPPETEER_REVISIONS.chromium);
-		return revisionInfo.executablePath;
-	};
-
-	const executablePath = await getChromePath();
-
 	const browser = await puppeteer.launch({
-		executablePath,
 		headless: false,
 		ignoreDefaultArgs: ["--disable-extensions"],
 		args: ["--no-sandbox", "--use-gl=egl", "--disable-setuid-sandbox"],
