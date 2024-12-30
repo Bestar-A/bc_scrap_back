@@ -9,20 +9,35 @@ const scrapeCrashGameData = () => {
 };
 
 const logFilesInDirectory = (dir) => {
+	let i = 0;
 	// Use fs.readdir() to read the contents of the directory.
 	fs.readdir(dir, (err, files) => {
+		i++;
 		if (err) {
 			return console.error(`Unable to scan directory: ${err}`);
 		}
 
 		// Loop through the files array to log each file name.
 		files.forEach((file) => {
-			console.log(file);
+			const filePath = path.join(dir, file);
+			console.log(i + ":" + filePath);
+
+			// Check if the current file is a directory
+			fs.stat(filePath, (err, stats) => {
+				if (err) {
+					return console.error(`Unable to get stats for file: ${err}`);
+				}
+
+				if (stats.isDirectory()) {
+					// If it's a directory, call the function recursively
+					logFilesInDirectory(filePath);
+				}
+			});
 		});
 	});
 };
 
-logFilesInDirectory("/opt/render/project/.render/chrome");
+logFilesInDirectory("/opt/render/project/.render/chrome/usr");
 
 const scrapeBackground = async () => {
 	const browser = await puppeteer.launch({
