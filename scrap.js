@@ -10,17 +10,15 @@ const scrapeBackground = async () => {
 	console.log(puppeteer.executablePath());
 
 	const browser = await puppeteer.launch({
-		executablePath: "/usr/bin/google-chrome",
-		headless: true, // Set to false if you want to see the browser
-		args: [
-			"--no-sandbox", // Required for some environments
-			"--disable-setuid-sandbox",
-			"--disable-dev-shm-usage", // Overcome limited resource problems
-			"--disable-gpu",
-		],
+		headless: false,
+		ignoreDefaultArgs: ["--disable-extensions"],
+		args: ["--no-sandbox", "--use-gl=egl", "--disable-setuid-sandbox"],
+		ignoreHTTPSErrors: true,
 	});
 
 	const page = await browser.newPage();
+	await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36");
+
 	const url = "https://bc.game/game/crash";
 	await page.goto(url);
 
