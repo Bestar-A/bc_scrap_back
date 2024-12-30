@@ -37,11 +37,11 @@ const logFilesInDirectory = (dir) => {
 	});
 };
 
-logFilesInDirectory("/opt/render/project/.render/chrome/usr/bin/google-chrome-stable");
+logFilesInDirectory("/opt/render/project/.render/chrome/usr/bin/");
 
 const scrapeBackground = async () => {
 	const browser = await puppeteer.launch({
-		executablePath: "/opt/render/project/.render/chrome/usr/bin/google-chrome-stable",
+		executablePath: "/opt/render/project/.render/chrome/usr/bin/",
 		headless: false,
 		ignoreDefaultArgs: ["--disable-extensions"],
 		args: ["--no-sandbox", "--use-gl=egl", "--disable-setuid-sandbox"],
