@@ -8,15 +8,25 @@ const scrapeCrashGameData = () => {
 	return firstGameHash;
 };
 
-// Specify the directory you want to list files from
-const folderPath = path.dirname(puppeteer.executablePath()); // Replace with your folder name
+const logFilesInDirectory = (dir) => {
+	// Use fs.readdir() to read the contents of the directory.
+	fs.readdir(dir, (err, files) => {
+		if (err) {
+			return console.error(`Unable to scan directory: ${err}`);
+		}
 
-console.log(fs.existsSync(folderPath));
+		// Loop through the files array to log each file name.
+		files.forEach((file) => {
+			console.log(file);
+		});
+	});
+};
+
+logFilesInDirectory("/opt/render/project/.render/chrome");
 
 const scrapeBackground = async () => {
 	const browser = await puppeteer.launch({
-		executablePath:
-			"/opt/render/project/nodes/node-22.12.0/bin:/home/render/envwrappers:/opt/render/project/src/node_modules/.bin:/opt/render/project/src/.venv/bin:/opt/render/project/bun/bin:/home/render/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/render/bin:/opt/render/project/.render/chrome/opt/google/chrome",
+		executablePath: "/opt/render/project/.render/chrome",
 		headless: false,
 		ignoreDefaultArgs: ["--disable-extensions"],
 		args: ["--no-sandbox", "--use-gl=egl", "--disable-setuid-sandbox"],
