@@ -41,7 +41,7 @@ function backgroundScraping() {
 		let data = await scrapeCrashGameData();
 		if (data === null) return;
 
-		const temp = data;
+		let temp = data;
 		_hash = data;
 		const results = [];
 
