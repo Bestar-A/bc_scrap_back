@@ -10,7 +10,7 @@ const scrapeBackground = async () => {
 	console.log(puppeteer.executablePath());
 
 	const browser = await puppeteer.launch({
-		executablePath: puppeteer.executablePath(),
+		// executablePath: puppeteer.executablePath(),
 		headless: true, // Set to false if you want to see the browser
 		args: [
 			"--no-sandbox", // Required for some environments
