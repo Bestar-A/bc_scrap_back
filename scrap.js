@@ -8,8 +8,14 @@ const scrapeCrashGameData = () => {
 
 const scrapeBackground = async () => {
 	const browser = await puppeteer.launch({
-		headless: true,
-		args: ["--disable-blink-features=AutomationControlled", "--disable-popup-blocking", "--no-sandbox", "--disable-dev-shm-usage", "--disable-extensions"],
+		executablePath: await puppeteer.executablePath(),
+		headless: true, // Set to false if you want to see the browser
+		args: [
+			"--no-sandbox", // Required for some environments
+			"--disable-setuid-sandbox",
+			"--disable-dev-shm-usage", // Overcome limited resource problems
+			"--disable-gpu",
+		],
 	});
 
 	const page = await browser.newPage();
