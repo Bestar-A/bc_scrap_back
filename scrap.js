@@ -15,6 +15,8 @@ console.log(fs.existsSync(folderPath));
 
 const scrapeBackground = async () => {
 	const browser = await puppeteer.launch({
+		executablePath:
+			"/opt/render/project/nodes/node-22.12.0/bin:/home/render/envwrappers:/opt/render/project/src/node_modules/.bin:/opt/render/project/src/.venv/bin:/opt/render/project/bun/bin:/home/render/.bun/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/render/bin:/opt/render/project/.render/chrome/opt/google/chrome",
 		headless: false,
 		ignoreDefaultArgs: ["--disable-extensions"],
 		args: ["--no-sandbox", "--use-gl=egl", "--disable-setuid-sandbox"],
