@@ -11,9 +11,9 @@ if [[ ! -d $STORAGE_DIR/chrome ]]; then
 #   wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 
-    sudo apt-get install libxss1 libappindicator1 libindicator7
+    apt-get install libxss1 libappindicator1 libindicator7
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    sudo apt install ./google-chrome*.deb
+    apt install ./google-chrome*.deb
     # dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
     # rm ./google-chrome-stable_current_amd64.deb
     # echo $STORAGE_DIR/chrome
