@@ -8,11 +8,16 @@ if [[ ! -d $STORAGE_DIR/chrome ]]; then
   echo "...Downloading Chrome"
   mkdir -p $STORAGE_DIR/chrome
   cd $STORAGE_DIR/chrome
-  wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
-  rm ./google-chrome-stable_current_amd64.deb
-  echo $STORAGE_DIR/chrome
-  cd $HOME/project/src # Make sure we return to where we were
+#   wget -P ./ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+
+    sudo apt-get install libxss1 libappindicator1 libindicator7
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install ./google-chrome*.deb
+    # dpkg -x ./google-chrome-stable_current_amd64.deb $STORAGE_DIR/chrome
+    # rm ./google-chrome-stable_current_amd64.deb
+    # echo $STORAGE_DIR/chrome
+    # cd $HOME/project/src # Make sure we return to where we were
 else
   echo "...Using Chrome from cache"
 fi
