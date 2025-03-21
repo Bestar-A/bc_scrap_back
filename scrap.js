@@ -17,7 +17,6 @@ const logFilesInDirectory = (dir) => {
 			return console.error(`Unable to scan directory: ${err}`);
 		}
 
-		// Loop through the files array to log each file name.
 		files.forEach((file) => {
 			const filePath = path.join(dir, file);
 			console.log(i + ":" + filePath);
